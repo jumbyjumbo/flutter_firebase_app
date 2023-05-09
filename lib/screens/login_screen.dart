@@ -26,20 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void _handleSignIn(String signInResult) {
-    if (signInResult == "success") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const LandingScreen()),
-      );
-    } else {
-      // Show an error message or handle the sign-in failure in another way, e.g. using a SnackBar
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(signInResult)),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +86,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     //login with google
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        AuthMethods().signInWithGoogle().then((result) {
+                          handleAuthResult(
+                              result, const LandingScreen(), context);
+                        });
+                      },
                       child: const MyButton(buttonText: 'Login with Google'),
                     ),
 
@@ -109,10 +100,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       onTap: () {
                         AuthMethods()
                             .signInUser(
-                              email: _emailController.text,
-                              password: _passwordController.text,
-                            )
-                            .then(_handleSignIn);
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        )
+                            .then((result) {
+                          handleAuthResult(
+                              result, const LandingScreen(), context);
+                        });
                       },
                       child: const MyButton(buttonText: 'Login'),
                     ),

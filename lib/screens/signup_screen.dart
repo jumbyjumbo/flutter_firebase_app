@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/utils/logo.dart';
 import 'package:instagram_flutter/ressources/auth_methods.dart';
-import 'package:instagram_flutter/utils/colors.dart';
+import 'package:instagram_flutter/widgets/button.dart';
 import 'package:instagram_flutter/widgets/text_field_input.dart';
 import 'package:instagram_flutter/screens/login_screen.dart';
 import 'package:instagram_flutter/screens/landing_screen.dart';
@@ -24,20 +24,6 @@ class _SignupScreenState extends State<SignupScreen> {
     _passwordController.dispose();
     _usernameController.dispose();
     super.dispose();
-  }
-
-  void _handleSignUp(String signUpResult) {
-    if (signUpResult == "success") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const LandingScreen()),
-      );
-    } else {
-      // Show an error message or handle the sign-up failure in another way, e.g. using a SnackBar
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(signUpResult)),
-      );
-    }
   }
 
   @override
@@ -104,6 +90,17 @@ class _SignupScreenState extends State<SignupScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    //login with google
+                    GestureDetector(
+                      onTap: () {
+                        AuthMethods().signInWithGoogle().then((result) {
+                          handleAuthResult(
+                              result, const LandingScreen(), context);
+                        });
+                      },
+                      child: const MyButton(buttonText: 'Login with Google'),
+                    ),
+
                     //login
                     GestureDetector(
                       onTap: () {
@@ -113,25 +110,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               builder: (context) => const LoginScreen()),
                         );
                       },
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 24),
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        decoration: const ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(32),
-                            ),
-                          ),
-                          color: primaryColor,
-                        ),
-                        child: const Text('login',
-                            style: TextStyle(
-                                color: mobileBackgroundColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24)),
-                      ),
+                      child: const MyButton(buttonText: 'Login'),
                     ),
 
                     //signup
@@ -139,31 +118,16 @@ class _SignupScreenState extends State<SignupScreen> {
                       onTap: () {
                         AuthMethods()
                             .signUpUser(
-                              email: _emailController.text,
-                              password: _passwordController.text,
-                              username: _usernameController.text,
-                            )
-                            .then(_handleSignUp);
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                          username: _usernameController.text,
+                        )
+                            .then((result) {
+                          handleAuthResult(
+                              result, const LandingScreen(), context);
+                        });
                       },
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 24),
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        decoration: const ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(32),
-                            ),
-                          ),
-                          color: primaryColor,
-                        ),
-                        child: const Text('signup',
-                            style: TextStyle(
-                                color: mobileBackgroundColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24)),
-                      ),
+                      child: const MyButton(buttonText: 'Signup'),
                     ),
                   ],
                 ),
