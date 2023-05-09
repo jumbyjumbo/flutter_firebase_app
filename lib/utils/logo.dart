@@ -13,7 +13,7 @@ class Logo extends StatelessWidget {
         primaryColor,
         BlendMode.srcIn,
       ),
-      height: 120,
+      height: 140,
     );
   }
 }

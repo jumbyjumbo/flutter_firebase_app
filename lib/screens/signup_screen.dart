@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:instagram_flutter/utils/logo.dart';
 import 'package:instagram_flutter/ressources/auth_methods.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 import 'package:instagram_flutter/widgets/text_field_input.dart';
@@ -37,16 +37,8 @@ class _SignupScreenState extends State<SignupScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               //logo
-              Expanded(
-                flex: 30,
-                child: SvgPicture.asset(
-                  'assets/logo.svg',
-                  colorFilter: const ColorFilter.mode(
-                    primaryColor,
-                    BlendMode.srcIn,
-                  ),
-                  height: 120,
-                ),
+              const Expanded(
+                child: Logo(),
               ),
 
               //fast login with apple, google and facebook
@@ -97,7 +89,6 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               //inputs
               Expanded(
-                flex: 26,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,7 +128,6 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               //buttons
               Expanded(
-                flex: 30,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

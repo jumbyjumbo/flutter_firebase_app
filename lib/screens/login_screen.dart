@@ -38,7 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               //logo
               const Expanded(
-                flex: 30,
                 child: Logo(),
               ),
 
@@ -90,7 +89,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               //inputs
               Expanded(
-                flex: 26,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -136,7 +134,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               //buttons
               Expanded(
-                flex: 30,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
