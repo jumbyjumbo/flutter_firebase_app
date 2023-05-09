@@ -15,10 +15,12 @@ class TextFieldInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final inputBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(32),
       borderSide: Divider.createBorderSide(context),
     );
 
     return TextField(
+      style: const TextStyle(fontSize: 20),
       controller: textEditingController,
       decoration: InputDecoration(
         hintText: hintText,
