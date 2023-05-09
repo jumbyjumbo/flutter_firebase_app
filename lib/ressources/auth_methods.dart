@@ -5,7 +5,7 @@ class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  //sign up with email and password
+  //sign up with username, email and password
   Future<String> signUpUser({
     required String email,
     required String password,
@@ -16,7 +16,7 @@ class AuthMethods {
 
     try {
       //add file non null check later
-      if (email.isNotEmpty || password.isNotEmpty || username.isNotEmpty) {
+      if (email.isNotEmpty && password.isNotEmpty && username.isNotEmpty) {
         //create user
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
@@ -33,6 +33,24 @@ class AuthMethods {
           "bio": "",
           "name": "",
         });
+        res = "success";
+      }
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+  // Sign in with email and password
+  Future<String> signInUser(
+      {required String email, required String password}) async {
+    String res = "some error occurred";
+
+    try {
+      if (email.isNotEmpty && password.isNotEmpty) {
+        // Sign in user
+        await _auth.signInWithEmailAndPassword(
+            email: email, password: password);
         res = "success";
       }
     } catch (err) {
