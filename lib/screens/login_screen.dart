@@ -100,13 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     //login with google
                     GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignupScreen()),
-                        );
-                      },
+                      onTap: () {},
                       child: const MyButton(buttonText: 'Login with Google'),
                     ),
 

@@ -23,8 +23,8 @@ class MyButton extends StatelessWidget {
       child: Text(buttonText,
           style: const TextStyle(
               color: mobileBackgroundColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 24)),
+              fontWeight: FontWeight.w800,
+              fontSize: 23)),
     );
   }
 }
