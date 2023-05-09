@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/ressources/auth_methods.dart';
-import 'package:instagram_flutter/utils/colors.dart';
+import 'package:instagram_flutter/widgets/button.dart';
 import 'package:instagram_flutter/widgets/text_field_input.dart';
 import 'package:instagram_flutter/utils/logo.dart';
 import 'package:instagram_flutter/screens/signup_screen.dart';
+import 'package:instagram_flutter/screens/landing_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,6 +26,20 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
+  void _handleSignIn(String signInResult) {
+    if (signInResult == "success") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const LandingScreen()),
+      );
+    } else {
+      // Show an error message or handle the sign-in failure in another way, e.g. using a SnackBar
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(signInResult)),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,82 +53,25 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               //logo
               const Expanded(
-                flex: 30,
                 child: Logo(),
               ),
 
-              //fast login with apple, google and facebook
-              // Expanded(
-              //   flex: 20,
-              //   child: Padding(
-              //     padding: const EdgeInsets.all(44.0),
-              //     child: Row(
-              //       children: [
-              //         Expanded(
-              //           child: Container(
-              //             decoration: const BoxDecoration(
-              //               shape: BoxShape.circle,
-              //               color: Colors.yellow,
-              //             ),
-              //           ),
-              //         ),
-              //         Expanded(
-              //           child: IconButton(
-              //             onPressed: () {
-              //               // AuthMethods().signInWithGoogle();
-              //             },
-              //             style: IconButton.styleFrom(
-              //               backgroundColor: primaryColor,
-              //               shape: const CircleBorder(),
-              //             ),
-              //             icon: const ImageIcon(
-              //               AssetImage('assets/google_logo.png'),
-              //             ),
-              //           ),
-              //         ),
-              //         Expanded(
-              //           child: Container(
-              //             decoration: const BoxDecoration(
-              //               shape: BoxShape.circle,
-              //               color: Colors.blue,
-              //             ),
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              // spacer
-
+              //spacer
               const SizedBox(
                 height: 32,
               ),
+
               //inputs
               Expanded(
-                flex: 26,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    //input username
-                    Visibility(
-                      maintainSize: true,
-                      maintainAnimation: true,
-                      maintainState: true,
-                      visible: false,
-                      child: Expanded(
-                        flex: 1,
-                        child: TextFieldInput(
-                          textEditingController: _usernameController,
-                          hintText: 'username',
-                          textInputType: TextInputType.text,
-                        ),
-                      ),
-                    ),
+                    //input username placeholder
+                    const Expanded(child: SizedBox()),
 
                     //input email
                     Expanded(
-                      flex: 1,
                       child: TextFieldInput(
                         textEditingController: _emailController,
                         hintText: 'email',
@@ -123,7 +81,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     //input password
                     Expanded(
-                      flex: 2,
                       child: TextFieldInput(
                         textEditingController: _passwordController,
                         hintText: 'password',
@@ -134,40 +91,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
+
               //buttons
               Expanded(
-                flex: 30,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    //login with google
+                    GestureDetector(
+                      onTap: () {},
+                      child: const MyButton(buttonText: 'Login with Google'),
+                    ),
+
                     //login
                     GestureDetector(
-                      onTap: () async {
-                        await AuthMethods().signInUser(
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                        );
+                      onTap: () {
+                        AuthMethods()
+                            .signInUser(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                            )
+                            .then(_handleSignIn);
                       },
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 24),
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        decoration: const ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(32),
-                            ),
-                          ),
-                          color: primaryColor,
-                        ),
-                        child: const Text('login',
-                            style: TextStyle(
-                                color: mobileBackgroundColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24)),
-                      ),
+                      child: const MyButton(buttonText: 'Login'),
                     ),
 
                     //signup
@@ -179,25 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               builder: (context) => const SignupScreen()),
                         );
                       },
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 24),
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        decoration: const ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(32),
-                            ),
-                          ),
-                          color: primaryColor,
-                        ),
-                        child: const Text('signup',
-                            style: TextStyle(
-                                color: mobileBackgroundColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24)),
-                      ),
+                      child: const MyButton(buttonText: 'Signup'),
                     ),
                   ],
                 ),
