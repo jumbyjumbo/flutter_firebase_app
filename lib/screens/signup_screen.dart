@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:instagram_flutter/ressources/auth_methods.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 import 'package:instagram_flutter/widgets/text_field_input.dart';
+import 'package:instagram_flutter/screens/login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -47,52 +48,50 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: 120,
                 ),
               ),
+
               //fast login with apple, google and facebook
-              Expanded(
-                flex: 20,
-                child: Padding(
-                  padding: const EdgeInsets.all(44.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.yellow,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: IconButton(
-                          onPressed: () {
-                            // AuthMethods().signInWithGoogle();
-                          },
-                          style: IconButton.styleFrom(
-                            backgroundColor: primaryColor,
-                            shape: const CircleBorder(),
-                          ),
-                          icon: SvgPicture.asset(
-                            'assets/google_logo.svg',
-                            colorFilter: const ColorFilter.mode(
-                              primaryColor,
-                              BlendMode.srcIn,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              //spacer
+              // Expanded(
+              //   flex: 20,
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(44.0),
+              //     child: Row(
+              //       children: [
+              //         Expanded(
+              //           child: Container(
+              //             decoration: const BoxDecoration(
+              //               shape: BoxShape.circle,
+              //               color: Colors.yellow,
+              //             ),
+              //           ),
+              //         ),
+              //         Expanded(
+              //           child: IconButton(
+              //             onPressed: () {
+              //               // AuthMethods().signInWithGoogle();
+              //             },
+              //             style: IconButton.styleFrom(
+              //               backgroundColor: primaryColor,
+              //               shape: const CircleBorder(),
+              //             ),
+              //             icon: const ImageIcon(
+              //               AssetImage('assets/google_logo.png'),
+              //             ),
+              //           ),
+              //         ),
+              //         Expanded(
+              //           child: Container(
+              //             decoration: const BoxDecoration(
+              //               shape: BoxShape.circle,
+              //               color: Colors.blue,
+              //             ),
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // spacer
+
               const SizedBox(
                 height: 32,
               ),
@@ -145,7 +144,13 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     //login
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()),
+                        );
+                      },
                       child: Container(
                         margin: const EdgeInsets.only(top: 24),
                         padding: const EdgeInsets.symmetric(vertical: 12),
