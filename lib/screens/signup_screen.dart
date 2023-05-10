@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/utils/logo.dart';
 import 'package:instagram_flutter/ressources/auth_methods.dart';
-import 'package:instagram_flutter/widgets/button.dart';
+import 'package:instagram_flutter/widgets/button/button.dart';
+import 'package:instagram_flutter/widgets/button/google_button.dart';
 import 'package:instagram_flutter/widgets/text_field_input.dart';
 import 'package:instagram_flutter/screens/login_screen.dart';
 import 'package:instagram_flutter/screens/landing_screen.dart';
@@ -39,7 +40,7 @@ class _SignupScreenState extends State<SignupScreen> {
             children: [
               //logo
               const Expanded(
-                child: Logo(),
+                child: Logo(height: 140),
               ),
 
               //spacer
@@ -98,7 +99,9 @@ class _SignupScreenState extends State<SignupScreen> {
                               result, const LandingScreen(), context);
                         });
                       },
-                      child: const MyButton(buttonText: 'Login with Google'),
+                      child: const GoogleButton(
+                        buttonText: 'Signup with Google',
+                      ),
                     ),
 
                     //login

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 
-class MyButton extends StatelessWidget {
-  const MyButton({super.key, required this.buttonText});
-  final String buttonText;
+class ButtonContainer extends StatelessWidget {
+  const ButtonContainer({super.key, required this.child});
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +20,7 @@ class MyButton extends StatelessWidget {
         ),
         color: primaryColor,
       ),
-      child: Text(buttonText,
-          style: const TextStyle(
-              color: mobileBackgroundColor,
-              fontWeight: FontWeight.w800,
-              fontSize: 23)),
+      child: child,
     );
   }
 }

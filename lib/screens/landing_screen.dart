@@ -22,7 +22,7 @@ class _LandingScreenState extends State<LandingScreen> {
             children: const [
               //logo
               Expanded(
-                child: Logo(),
+                child: Logo(height: 300),
               ),
             ],
           ),
