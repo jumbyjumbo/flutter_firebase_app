@@ -14,17 +14,17 @@ class GoogleButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const GoogleLogo(
-            height: 32,
-          ),
-          const SizedBox(
-            width: 18,
-          ),
           Text(buttonText,
               style: const TextStyle(
                   color: mobileBackgroundColor,
                   fontWeight: FontWeight.w800,
                   fontSize: 24)),
+          const SizedBox(
+            width: 32,
+          ),
+          const GoogleLogo(
+            height: 32,
+          ),
         ],
       ),
     );
