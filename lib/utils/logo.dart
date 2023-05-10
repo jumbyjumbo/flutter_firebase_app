@@ -3,7 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 
 class Logo extends StatelessWidget {
-  const Logo({super.key});
+  final double height;
+  const Logo({super.key, required this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class Logo extends StatelessWidget {
         primaryColor,
         BlendMode.srcIn,
       ),
-      height: 140,
+      height: height,
     );
   }
 }

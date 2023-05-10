@@ -91,15 +91,33 @@ class AuthMethods {
 
 void handleAuthResult(
     String authResult, Widget destinationPage, BuildContext context) {
+  String message;
+
+  // auth success
   if (authResult == "success") {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => destinationPage),
     );
-  } else {
-    // Show an error message or handle the authentication failure in another way, e.g. using a SnackBar
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(authResult)),
-    );
   }
+
+  // auth failure TO DO
+  switch (authResult) {
+    case 'ERROR_INVALID_EMAIL':
+      message = 'The email address is not valid.';
+      break;
+    case 'ERROR_WRONG_PASSWORD':
+      message = 'The password is incorrect.';
+      break;
+    case 'ERROR_USER_NOT_FOUND':
+      message = 'The user does not exist.';
+      break;
+    default:
+      message = 'An undefined Error happened.';
+  }
+
+  //notify auth failure w/ appropriate message
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(content: Text(message)),
+  );
 }
