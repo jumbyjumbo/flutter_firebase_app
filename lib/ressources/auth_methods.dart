@@ -9,28 +9,24 @@ class AuthMethods {
 
   //sign in with google
   Future<String> signInWithGoogle() async {
-    String res = "some error occurred";
+    String res = "success";
 
-    try {
-      // Trigger the authentication flow
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      // Obtain the auth details from the request
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser!.authentication;
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser!.authentication;
 
-      // Create a new credential
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
 
-      // Once signed in, return the UserCredential
-      await _auth.signInWithCredential(credential);
-      res = "success";
-    } catch (err) {
-      res = err.toString();
-    }
+    // Once signed in, return the UserCredential
+    await _auth.signInWithCredential(credential);
+    res = "success";
 
     return res;
   }
@@ -42,7 +38,7 @@ class AuthMethods {
     required String username,
     //required Uint8List file,
   }) async {
-    String res = "some error occured";
+    String res = "Please fill all fields";
 
     try {
       //add file non null check later
@@ -74,7 +70,7 @@ class AuthMethods {
   // Sign in with email and password
   Future<String> signInUser(
       {required String email, required String password}) async {
-    String res = "some error occurred";
+    String res = "Please fill all fields";
     try {
       if (email.isNotEmpty && password.isNotEmpty) {
         // Sign in user
@@ -99,25 +95,35 @@ void handleAuthResult(
       context,
       MaterialPageRoute(builder: (context) => destinationPage),
     );
-  }
+  } else {
+    // auth failure - set message
+    switch (authResult) {
+      case 'Please fill all fields':
+        message = 'Please fill all fields.';
+        break;
+      case '[firebase_auth/invalid-email] The email address is badly formatted.':
+        message = 'The email address is not valid.';
+        break;
+      case '[firebase_auth/weak-password] Password should be at least 6 characters':
+        message = 'The password needs a least 6 characters.';
+        break;
+      case '[firebase_auth/user-not-found] There is no user record corresponding to this identifier. The user may have been deleted.':
+        message = 'The user does not exist.';
+        break;
+      default:
+        message = 'An Error happened.';
+    }
 
-  // auth failure TO DO
-  switch (authResult) {
-    case 'ERROR_INVALID_EMAIL':
-      message = 'The email address is not valid.';
-      break;
-    case 'ERROR_WRONG_PASSWORD':
-      message = 'The password is incorrect.';
-      break;
-    case 'ERROR_USER_NOT_FOUND':
-      message = 'The user does not exist.';
-      break;
-    default:
-      message = 'An undefined Error happened.';
+    //notify auth failure w/ appropriate message
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Center(
+          child: Text(message,
+              style:
+                  const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        ),
+        duration: const Duration(milliseconds: 500),
+      ),
+    );
   }
-
-  //notify auth failure w/ appropriate message
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text(message)),
-  );
 }
