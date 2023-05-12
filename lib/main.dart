@@ -28,9 +28,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'instagram clone',
+      title: 'flutter app',
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: mobileBackgroundColor,
+        scaffoldBackgroundColor: backgroundColor,
         useMaterial3: true,
       ),
       // home: const ResponsiveLayout(

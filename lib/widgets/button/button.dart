@@ -11,7 +11,7 @@ class MyButton extends StatelessWidget {
     return ButtonContainer(
         child: Text(buttonText,
             style: const TextStyle(
-                color: mobileBackgroundColor,
+                color: backgroundColor,
                 fontWeight: FontWeight.w800,
                 fontSize: 24)));
   }

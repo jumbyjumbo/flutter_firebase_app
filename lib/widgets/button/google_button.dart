@@ -16,7 +16,7 @@ class GoogleButton extends StatelessWidget {
         children: [
           Text(buttonText,
               style: const TextStyle(
-                  color: mobileBackgroundColor,
+                  color: backgroundColor,
                   fontWeight: FontWeight.w800,
                   fontSize: 24)),
           const SizedBox(
