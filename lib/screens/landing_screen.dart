@@ -16,10 +16,10 @@ class _LandingScreenState extends State<LandingScreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
+            children: [
               //logo
               Expanded(
                 child: Logo(height: 300),
