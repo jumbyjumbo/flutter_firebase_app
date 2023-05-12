@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_flutter/utils/colors.dart';
 import 'package:instagram_flutter/utils/default_padding.dart';
 import 'package:instagram_flutter/utils/logo.dart';
 import 'package:instagram_flutter/ressources/auth_methods.dart';

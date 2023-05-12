@@ -40,19 +40,6 @@ class MyApp extends StatelessWidget {
       //title of the app used by the OS
       title: 'flutter app',
       theme: ThemeData(
-        //text field input style TODO
-        inputDecorationTheme: const InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-        ),
-
         //elevated button style
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
