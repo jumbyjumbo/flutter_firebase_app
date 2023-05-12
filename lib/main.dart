@@ -1,9 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 import 'package:instagram_flutter/screens/login_screen.dart';
 
+//initialise firebase and run the app
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (kIsWeb) {
@@ -23,15 +25,47 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  // root of the app
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return MaterialApp(
+      //make the theme dark or light depending on system settings
+      themeMode: ThemeMode.system,
+      //general animation duration
+      themeAnimationDuration: const Duration(milliseconds: 100),
+      //hide test banner
       debugShowCheckedModeBanner: false,
+      //title of the app used by the OS
       title: 'flutter app',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: backgroundColor,
+      theme: ThemeData(
+        //text field input style TODO
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+        ),
+
+        //elevated button style
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: buttongrey,
+            foregroundColor: white,
+          ),
+        ),
+        //app font
+        textTheme: GoogleFonts.orbitronTextTheme(textTheme),
         useMaterial3: true,
+        primaryColor: white,
+        canvasColor: deepergrey,
+        scaffoldBackgroundColor: deepergrey,
       ),
       // home: const ResponsiveLayout(
       //   mobileLayout: MobileLayout(),

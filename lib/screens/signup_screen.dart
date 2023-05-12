@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_flutter/utils/colors.dart';
+import 'package:instagram_flutter/utils/default_padding.dart';
 import 'package:instagram_flutter/utils/logo.dart';
 import 'package:instagram_flutter/ressources/auth_methods.dart';
-import 'package:instagram_flutter/widgets/button/button.dart';
-import 'package:instagram_flutter/widgets/button/google_button.dart';
 import 'package:instagram_flutter/widgets/text_field_input.dart';
 import 'package:instagram_flutter/screens/login_screen.dart';
 import 'package:instagram_flutter/screens/landing_screen.dart';
+import '../utils/google_logo.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -92,33 +93,47 @@ class _SignupScreenState extends State<SignupScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     //login with google
-                    GestureDetector(
-                      onTap: () {
+                    ElevatedButton(
+                      onPressed: () {
                         AuthMethods().signInWithGoogle().then((result) {
                           handleAuthResult(
                               result, const LandingScreen(), context);
                         });
                       },
-                      child: const GoogleButton(
-                        buttonText: 'Signup with Google',
+                      child: const DefaultPadding(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Sign up with Google",
+                            ),
+                            SizedBox(
+                              width: 24,
+                            ),
+                            GoogleLogo(
+                              height: 48,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
 
                     //login
-                    GestureDetector(
-                      onTap: () {
+                    ElevatedButton(
+                      onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const LoginScreen()),
                         );
                       },
-                      child: const MyButton(buttonText: 'Login'),
+                      child: const DefaultPadding(child: Text('Login')),
                     ),
 
                     //signup
-                    GestureDetector(
-                      onTap: () {
+                    ElevatedButton(
+                      onPressed: () {
                         AuthMethods()
                             .signUpUser(
                           email: _emailController.text,
@@ -130,7 +145,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               result, const LandingScreen(), context);
                         });
                       },
-                      child: const MyButton(buttonText: 'Signup'),
+                      child: const DefaultPadding(child: Text('Signup')),
                     ),
                   ],
                 ),
