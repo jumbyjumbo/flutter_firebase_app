@@ -120,11 +120,11 @@ class AuthHub extends StatelessWidget {
                       SizedBox(
                         width: 8,
                       ),
-                      Text(
-                        "Or continue with",
-                        style: TextStyle(
-                            color: white, fontWeight: FontWeight.w900),
-                      ),
+                      Text("Or continue with",
+                          style: TextStyle(
+                              color: white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16)),
                       SizedBox(
                         width: 8,
                       ),
@@ -200,10 +200,11 @@ class AuthHub extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Already have an account?",
-                  style: TextStyle(color: white),
-                ),
+                const Text("Already have an account?",
+                    style: TextStyle(
+                        color: white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16)),
                 const SizedBox(
                   width: 8,
                 ),
@@ -213,10 +214,11 @@ class AuthHub extends StatelessWidget {
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.ease);
                   },
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(color: Colors.blue),
-                  ),
+                  child: const Text("Login",
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16)),
                 ),
               ],
             )
@@ -262,6 +264,29 @@ class AuthHub extends StatelessWidget {
                 ],
               ),
             ),
+
+            //forgot password
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+              child: Container(
+                alignment: Alignment.centerRight,
+                child: GestureDetector(
+                  onTap: () {
+                    _pageController.animateToPage(2,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.ease);
+                  },
+                  child: const Text(
+                    "Forgot password?",
+                    style: TextStyle(
+                        color: white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
+                  ),
+                ),
+              ),
+            ),
+
             const SizedBox(
               height: 50,
             ),
@@ -316,7 +341,9 @@ class AuthHub extends StatelessWidget {
                       Text(
                         "Or continue with",
                         style: TextStyle(
-                            color: white, fontWeight: FontWeight.w900),
+                            color: white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
                       ),
                       SizedBox(
                         width: 8,
@@ -331,7 +358,7 @@ class AuthHub extends StatelessWidget {
                 ),
                 //login with 3rd party
                 SizedBox(
-                  height: 200,
+                  height: 150,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -395,7 +422,8 @@ class AuthHub extends StatelessWidget {
               children: [
                 const Text(
                   "Don't have an account?",
-                  style: TextStyle(color: white),
+                  style: TextStyle(
+                      color: white, fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 const SizedBox(
                   width: 8,
@@ -406,10 +434,11 @@ class AuthHub extends StatelessWidget {
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.ease);
                   },
-                  child: const Text(
-                    "Signup",
-                    style: TextStyle(color: Colors.blue),
-                  ),
+                  child: const Text("Signup",
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16)),
                 ),
               ],
             )

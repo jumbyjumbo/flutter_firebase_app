@@ -33,13 +33,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       //make the theme dark or light depending on system settings
       themeMode: ThemeMode.system,
+
       //general animation duration
       themeAnimationDuration: const Duration(milliseconds: 200),
+
       //hide test banner
       debugShowCheckedModeBanner: false,
+
       //title of the app used by the OS
       title: 'flutter app',
+
+      //theme of the app
       theme: ThemeData(
+        //card theme
         cardTheme: const CardTheme(color: deepgrey),
         //elevated button style
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -55,6 +61,7 @@ class MyApp extends StatelessWidget {
         canvasColor: deepergrey,
         scaffoldBackgroundColor: deepergrey,
       ),
+
       // home: const ResponsiveLayout(
       //   mobileLayout: MobileLayout(),
       //   webLayout: WebLayout(),
