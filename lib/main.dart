@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       //make the theme dark or light depending on system settings
       themeMode: ThemeMode.system,
       //general animation duration
-      themeAnimationDuration: const Duration(milliseconds: 100),
+      themeAnimationDuration: const Duration(milliseconds: 200),
       //hide test banner
       debugShowCheckedModeBanner: false,
       //title of the app used by the OS

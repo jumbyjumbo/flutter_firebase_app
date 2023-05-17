@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 import '../ressources/auth_methods.dart';
-import '../utils/apple_logo.dart';
-import '../utils/fb_logo.dart';
-import '../utils/google_logo.dart';
+import '../utils/logos/apple_logo.dart';
+import '../utils/logos/fb_logo.dart';
+import '../utils/logos/google_logo.dart';
 import '../widgets/text_field_input.dart';
 import 'landing_screen.dart';
 
@@ -20,72 +20,44 @@ class AuthHub extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       controller: _pageController,
       children: [
-        //login
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              //login with 3rd party
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //login with google
-                  Expanded(
-                    child: Card(
-                      child: IconButton(
-                        onPressed: () {
-                          AuthMethods().signInWithGoogle().then((result) {
-                            handleAuthResult(
-                                result, const LandingScreen(), context);
-                          });
-                        },
-                        icon: const GoogleLogo(height: 80),
-                      ),
-                    ),
-                  ),
-                  //login with apple
-                  Expanded(
-                    child: Card(
-                      child: IconButton(
-                        onPressed: () {
-                          AuthMethods().signInWithGoogle().then((result) {
-                            handleAuthResult(
-                                result, const LandingScreen(), context);
-                          });
-                        },
-                        icon: const AppleLogo(height: 80),
-                      ),
-                    ),
-                  ),
-                  //login with facebook
-                  Expanded(
-                    child: Card(
-                      child: IconButton(
-                        onPressed: () {
-                          AuthMethods().signInWithGoogle().then((result) {
-                            handleAuthResult(
-                                result, const LandingScreen(), context);
-                          });
-                        },
-                        icon: const FBLogo(height: 80),
-                      ),
-                    ),
-                  ),
-                ],
+        //signup
+        Column(
+          children: [
+            //signup title
+            const SizedBox(
+              height: 80,
+              child: Center(
+                child: Text(
+                  'Signup',
+                  style: TextStyle(
+                      fontSize: 60, color: white, fontWeight: FontWeight.bold),
+                ),
               ),
-
-              //inputs
-              Column(
+            ),
+            const Spacer(),
+            //inputs
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+              child: Column(
                 children: [
+                  //input username
+                  TextFieldInput(
+                    textEditingController: _usernameController,
+                    hintText: 'username',
+                    textInputType: TextInputType.text,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   //input email
                   TextFieldInput(
                     textEditingController: _emailController,
                     hintText: 'email',
                     textInputType: TextInputType.emailAddress,
                   ),
-
+                  const SizedBox(
+                    height: 10,
+                  ),
                   //input password
                   TextFieldInput(
                     textEditingController: _passwordController,
@@ -95,90 +67,354 @@ class AuthHub extends StatelessWidget {
                   ),
                 ],
               ),
-
-              //confirmation button
-              ElevatedButton(
-                onPressed: () {
-                  AuthMethods()
-                      .signInUser(
-                    email: _emailController.text,
-                    password: _passwordController.text,
-                  )
-                      .then((result) {
-                    handleAuthResult(result, const LandingScreen(), context);
-                  });
-                },
-                child: const Text('Login'),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            //signup button
+            GestureDetector(
+              onTap: () {
+                AuthMethods()
+                    .signUpUser(
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                  username: _usernameController.text,
+                )
+                    .then((result) {
+                  handleAuthResult(result, const LandingScreen(), context);
+                });
+              },
+              child: const SizedBox(
+                height: 80,
+                width: double.infinity,
+                child: Card(
+                  color: white,
+                  child: Center(
+                    child: Text(
+                      'Signup',
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: black,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
               ),
-            ],
-          ),
-        ),
-
-        //signup
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Card(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            //continue with 3rd party
+            Column(
               children: [
-                //login with google
-                IconButton(
-                  onPressed: () {
-                    AuthMethods().signInWithGoogle().then((result) {
-                      handleAuthResult(result, const LandingScreen(), context);
-                    });
-                  },
-                  icon: const GoogleLogo(height: 50),
+                //or continue with
+                const SizedBox(
+                  height: 30,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          color: white,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "Or continue with",
+                        style: TextStyle(
+                            color: white, fontWeight: FontWeight.w900),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Expanded(
+                        child: Divider(
+                          color: white,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                //login with apple
-                IconButton(
-                  onPressed: () {
-                    AuthMethods().signInWithGoogle().then((result) {
-                      handleAuthResult(result, const LandingScreen(), context);
-                    });
-                  },
-                  icon: const AppleLogo(height: 50),
-                ),
-
-                //inputs
-                Column(
-                  children: [
-                    //input email
-                    TextFieldInput(
-                      textEditingController: _emailController,
-                      hintText: 'email',
-                      textInputType: TextInputType.emailAddress,
-                    ),
-
-                    //input password
-                    TextFieldInput(
-                      textEditingController: _passwordController,
-                      hintText: 'password',
-                      textInputType: TextInputType.text,
-                      isPass: true,
-                    ),
-                  ],
-                ),
-
-                //buttons
-                ElevatedButton(
-                  onPressed: () {
-                    AuthMethods()
-                        .signInUser(
-                      email: _emailController.text,
-                      password: _passwordController.text,
-                    )
-                        .then((result) {
-                      handleAuthResult(result, const LandingScreen(), context);
-                    });
-                  },
-                  child: const Text('Login'),
+                //login with 3rd party
+                SizedBox(
+                  height: 150,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Spacer(),
+                      //login with google
+                      GestureDetector(
+                        onTap: () {
+                          AuthMethods().signInWithGoogle().then((result) {
+                            handleAuthResult(
+                                result, const LandingScreen(), context);
+                          });
+                        },
+                        child: const Card(
+                          color: white,
+                          child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: GoogleLogo(height: 80)),
+                        ),
+                      ),
+                      const Spacer(),
+                      //login with apple
+                      GestureDetector(
+                        onTap: () {
+                          AuthMethods().signInWithGoogle().then((result) {
+                            handleAuthResult(
+                                result, const LandingScreen(), context);
+                          });
+                        },
+                        child: const Card(
+                          color: white,
+                          child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: AppleLogo(height: 80)),
+                        ),
+                      ),
+                      const Spacer(),
+                      //login with facebook
+                      GestureDetector(
+                        onTap: () {
+                          AuthMethods().signInWithGoogle().then((result) {
+                            handleAuthResult(
+                                result, const LandingScreen(), context);
+                          });
+                        },
+                        child: const Card(
+                          color: white,
+                          child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: FBLogo(height: 80)),
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
-        )
+            //already have an account? Login
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Already have an account?",
+                  style: TextStyle(color: white),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _pageController.animateToPage(1,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.ease);
+                  },
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+
+        //login
+        Column(
+          children: [
+            //login title
+            const SizedBox(
+              height: 80,
+              child: Center(
+                child: Text(
+                  'Login',
+                  style: TextStyle(
+                      fontSize: 60, color: white, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            //inputs
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+              child: Column(
+                children: [
+                  //input email
+                  TextFieldInput(
+                    textEditingController: _emailController,
+                    hintText: 'email',
+                    textInputType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  //input password
+                  TextFieldInput(
+                    textEditingController: _passwordController,
+                    hintText: 'password',
+                    textInputType: TextInputType.text,
+                    isPass: true,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            //login button
+            GestureDetector(
+              onTap: () {
+                AuthMethods()
+                    .signInUser(
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                )
+                    .then((result) {
+                  handleAuthResult(result, const LandingScreen(), context);
+                });
+              },
+              child: const SizedBox(
+                height: 80,
+                width: double.infinity,
+                child: Card(
+                  color: white,
+                  child: Center(
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: black,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            //continue with 3rd party
+            Column(
+              children: [
+                //or continue with
+                const SizedBox(
+                  height: 30,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          color: white,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "Or continue with",
+                        style: TextStyle(
+                            color: white, fontWeight: FontWeight.w900),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Expanded(
+                        child: Divider(
+                          color: white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                //login with 3rd party
+                SizedBox(
+                  height: 200,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Spacer(),
+                      //login with google
+                      GestureDetector(
+                        onTap: () {
+                          AuthMethods().signInWithGoogle().then((result) {
+                            handleAuthResult(
+                                result, const LandingScreen(), context);
+                          });
+                        },
+                        child: const Card(
+                          color: white,
+                          child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: GoogleLogo(height: 80)),
+                        ),
+                      ),
+                      const Spacer(),
+                      //login with apple
+                      GestureDetector(
+                        onTap: () {
+                          AuthMethods().signInWithGoogle().then((result) {
+                            handleAuthResult(
+                                result, const LandingScreen(), context);
+                          });
+                        },
+                        child: const Card(
+                          color: white,
+                          child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: AppleLogo(height: 80)),
+                        ),
+                      ),
+                      const Spacer(),
+                      //login with facebook
+                      GestureDetector(
+                        onTap: () {
+                          AuthMethods().signInWithGoogle().then((result) {
+                            handleAuthResult(
+                                result, const LandingScreen(), context);
+                          });
+                        },
+                        child: const Card(
+                          color: white,
+                          child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: FBLogo(height: 80)),
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            //dont have an account? signup
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Don't have an account?",
+                  style: TextStyle(color: white),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _pageController.animateToPage(0,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.ease);
+                  },
+                  child: const Text(
+                    "Signup",
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
 
         //forgot password
       ],

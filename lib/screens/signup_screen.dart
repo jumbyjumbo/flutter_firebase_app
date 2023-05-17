@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_flutter/utils/default_padding.dart';
-import 'package:instagram_flutter/utils/logo.dart';
+import 'package:instagram_flutter/utils/logos/logo.dart';
 import 'package:instagram_flutter/ressources/auth_methods.dart';
 import 'package:instagram_flutter/widgets/text_field_input.dart';
 import 'package:instagram_flutter/screens/login_screen.dart';
 import 'package:instagram_flutter/screens/landing_screen.dart';
-import '../utils/google_logo.dart';
+import '../utils/logos/google_logo.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -99,22 +98,20 @@ class _SignupScreenState extends State<SignupScreen> {
                               result, const LandingScreen(), context);
                         });
                       },
-                      child: const DefaultPadding(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Sign up with Google",
-                            ),
-                            SizedBox(
-                              width: 24,
-                            ),
-                            GoogleLogo(
-                              height: 48,
-                            ),
-                          ],
-                        ),
+                      child: const Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Sign up with Google",
+                          ),
+                          SizedBox(
+                            width: 24,
+                          ),
+                          GoogleLogo(
+                            height: 48,
+                          ),
+                        ],
                       ),
                     ),
 
@@ -127,7 +124,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               builder: (context) => const LoginScreen()),
                         );
                       },
-                      child: const DefaultPadding(child: Text('Login')),
+                      child: const Text('Login'),
                     ),
 
                     //signup
@@ -144,7 +141,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               result, const LandingScreen(), context);
                         });
                       },
-                      child: const DefaultPadding(child: Text('Signup')),
+                      child: const Text('Signup'),
                     ),
                   ],
                 ),

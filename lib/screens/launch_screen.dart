@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_flutter/utils/logo.dart';
+import 'package:instagram_flutter/utils/logos/logo.dart';
 
 class LaunchScreen extends StatefulWidget {
   const LaunchScreen({super.key});

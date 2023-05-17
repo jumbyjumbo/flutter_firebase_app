@@ -28,7 +28,7 @@ class TextFieldInput extends StatelessWidget {
         enabledBorder: inputBorder,
         focusedBorder: inputBorder,
         filled: true,
-        contentPadding: const EdgeInsets.all(16),
+        contentPadding: const EdgeInsets.all(20),
       ),
       keyboardType: textInputType,
       obscureText: isPass,
