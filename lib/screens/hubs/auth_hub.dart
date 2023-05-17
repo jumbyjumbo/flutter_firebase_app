@@ -4,6 +4,7 @@ import '../../ressources/auth_methods.dart';
 import '../../ressources/logos/apple_logo.dart';
 import '../../ressources/logos/fb_logo.dart';
 import '../../ressources/logos/google_logo.dart';
+import '../../widgets/continue_with_3rd_party.dart';
 import '../../widgets/text_field_input.dart';
 import '../landing_screen.dart';
 
@@ -35,6 +36,7 @@ class AuthHub extends StatelessWidget {
               ),
             ),
             const Spacer(),
+
             //inputs
             Padding(
               padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
@@ -71,6 +73,7 @@ class AuthHub extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
+
             //signup button
             GestureDetector(
               onTap: () {
@@ -104,99 +107,11 @@ class AuthHub extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
+
             //continue with 3rd party
-            Column(
-              children: [
-                //or continue with
-                const SizedBox(
-                  height: 30,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          color: white,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text("Or continue with",
-                          style: TextStyle(
-                              color: white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16)),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                //login with 3rd party
-                SizedBox(
-                  height: 150,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Spacer(),
-                      //login with google
-                      GestureDetector(
-                        onTap: () {
-                          AuthMethods().signInWithGoogle().then((result) {
-                            handleAuthResult(
-                                result, const LandingScreen(), context);
-                          });
-                        },
-                        child: const Card(
-                          color: white,
-                          child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: GoogleLogo(height: 80)),
-                        ),
-                      ),
-                      const Spacer(),
-                      //login with apple
-                      GestureDetector(
-                        onTap: () {
-                          AuthMethods().signInWithGoogle().then((result) {
-                            handleAuthResult(
-                                result, const LandingScreen(), context);
-                          });
-                        },
-                        child: const Card(
-                          color: white,
-                          child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: AppleLogo(height: 80)),
-                        ),
-                      ),
-                      const Spacer(),
-                      //login with facebook
-                      GestureDetector(
-                        onTap: () {
-                          AuthMethods().signInWithGoogle().then((result) {
-                            handleAuthResult(
-                                result, const LandingScreen(), context);
-                          });
-                        },
-                        child: const Card(
-                          color: white,
-                          child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: FBLogo(height: 80)),
-                        ),
-                      ),
-                      const Spacer(),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            //already have an account? Login
+            const ContinueWith3rdParty(), //already have an account? Login
+
+            //already have an account? Signup
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -211,7 +126,7 @@ class AuthHub extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     _pageController.animateToPage(1,
-                        duration: const Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 200),
                         curve: Curves.ease);
                   },
                   child: const Text("Login",
@@ -323,100 +238,9 @@ class AuthHub extends StatelessWidget {
               height: 50,
             ),
             //continue with 3rd party
-            Column(
-              children: [
-                //or continue with
-                const SizedBox(
-                  height: 30,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          color: white,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        "Or continue with",
-                        style: TextStyle(
-                            color: white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                //login with 3rd party
-                SizedBox(
-                  height: 150,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Spacer(),
-                      //login with google
-                      GestureDetector(
-                        onTap: () {
-                          AuthMethods().signInWithGoogle().then((result) {
-                            handleAuthResult(
-                                result, const LandingScreen(), context);
-                          });
-                        },
-                        child: const Card(
-                          color: white,
-                          child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: GoogleLogo(height: 80)),
-                        ),
-                      ),
-                      const Spacer(),
-                      //login with apple
-                      GestureDetector(
-                        onTap: () {
-                          AuthMethods().signInWithGoogle().then((result) {
-                            handleAuthResult(
-                                result, const LandingScreen(), context);
-                          });
-                        },
-                        child: const Card(
-                          color: white,
-                          child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: AppleLogo(height: 80)),
-                        ),
-                      ),
-                      const Spacer(),
-                      //login with facebook
-                      GestureDetector(
-                        onTap: () {
-                          AuthMethods().signInWithGoogle().then((result) {
-                            handleAuthResult(
-                                result, const LandingScreen(), context);
-                          });
-                        },
-                        child: const Card(
-                          color: white,
-                          child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: FBLogo(height: 80)),
-                        ),
-                      ),
-                      const Spacer(),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            //dont have an account? signup
+            const ContinueWith3rdParty(), //dont have an account? signup
+
+            //dont have an account? login
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -431,7 +255,7 @@ class AuthHub extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     _pageController.animateToPage(0,
-                        duration: const Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 200),
                         curve: Curves.ease);
                   },
                   child: const Text("Signup",
@@ -445,7 +269,7 @@ class AuthHub extends StatelessWidget {
           ],
         ),
 
-        //forgot password
+        //forgot password TODO #6
       ],
     );
   }
