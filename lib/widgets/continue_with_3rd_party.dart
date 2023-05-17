@@ -63,7 +63,7 @@ class ContinueWith3rdParty extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              //login with apple
+              //login with apple TODO #8
               GestureDetector(
                 onTap: () {
                   AuthMethods().signInWithGoogle().then((result) {
