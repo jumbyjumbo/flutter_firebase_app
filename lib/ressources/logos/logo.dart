@@ -11,7 +11,7 @@ class Logo extends StatelessWidget {
     return SvgPicture.asset(
       'assets/logo.svg',
       colorFilter: const ColorFilter.mode(
-        primaryColor,
+        white,
         BlendMode.srcIn,
       ),
       height: height,
