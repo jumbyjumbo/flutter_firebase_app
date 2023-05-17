@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:instagram_flutter/utils/colors.dart';
-import '../utils/logos/logo.dart';
-import 'auth_hub.dart';
-import 'click_hub.dart';
-import 'social_hub.dart';
+import '../ressources/logos/logo.dart';
+import 'hubs/auth_hub.dart';
+import 'hubs/click_hub.dart';
+import 'hubs/social_hub.dart';
 
 //list of hubs for navigation bar
 final List<Widget> hubList = [

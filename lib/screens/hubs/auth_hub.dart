@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/utils/colors.dart';
-import '../ressources/auth_methods.dart';
-import '../utils/logos/apple_logo.dart';
-import '../utils/logos/fb_logo.dart';
-import '../utils/logos/google_logo.dart';
-import '../widgets/text_field_input.dart';
-import 'landing_screen.dart';
+import '../../ressources/auth_methods.dart';
+import '../../ressources/logos/apple_logo.dart';
+import '../../ressources/logos/fb_logo.dart';
+import '../../ressources/logos/google_logo.dart';
+import '../../widgets/text_field_input.dart';
+import '../landing_screen.dart';
 
 class AuthHub extends StatelessWidget {
   AuthHub({super.key});
