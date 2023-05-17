@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 import '../../ressources/auth_methods.dart';
-import '../../ressources/logos/apple_logo.dart';
-import '../../ressources/logos/fb_logo.dart';
-import '../../ressources/logos/google_logo.dart';
 import '../../widgets/continue_with_3rd_party.dart';
 import '../../widgets/text_field_input.dart';
 import '../landing_screen.dart';

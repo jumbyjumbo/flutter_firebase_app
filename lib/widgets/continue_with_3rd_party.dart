@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../ressources/auth_methods.dart';
 import '../ressources/logos/apple_logo.dart';
-import '../ressources/logos/fb_logo.dart';
+//import '../ressources/logos/fb_logo.dart';
 import '../ressources/logos/google_logo.dart';
 import '../screens/landing_screen.dart';
 import '../utils/colors.dart';
@@ -79,20 +78,20 @@ class ContinueWith3rdParty extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              //login with facebook
-              GestureDetector(
-                onTap: () {
-                  AuthMethods().signInWithGoogle().then((result) {
-                    handleAuthResult(result, const LandingScreen(), context);
-                  });
-                },
-                child: const Card(
-                  color: white,
-                  child: Padding(
-                      padding: EdgeInsets.all(8.0), child: FBLogo(height: 80)),
-                ),
-              ),
-              const Spacer(),
+              //login with facebook TODO #7
+              //   GestureDetector(
+              //     onTap: () {
+              //       AuthMethods().signInWithGoogle().then((result) {
+              //         handleAuthResult(result, const LandingScreen(), context);
+              //       });
+              //     },
+              //     child: const Card(
+              //       color: white,
+              //       child: Padding(
+              //           padding: EdgeInsets.all(8.0), child: FBLogo(height: 80)),
+              //     ),
+              //   ),
+              //   const Spacer(),
             ],
           ),
         ),
