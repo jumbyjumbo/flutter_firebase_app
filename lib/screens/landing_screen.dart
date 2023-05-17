@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 import '../utils/logo.dart';
-import 'authHub.dart';
-import 'clickHub.dart';
-import 'socialHub.dart';
+import 'auth_hub.dart';
+import 'click_hub.dart';
+import 'social_hub.dart';
 
 //list of hubs for navigation bar
-final List<Widget> pageList = [
+final List<Widget> hubList = [
   SocialHub(),
   ClickHub(),
   AuthHub(),
@@ -21,7 +22,7 @@ class LandingScreen extends StatefulWidget {
 
 class _LandingScreenState extends State<LandingScreen> {
   //page index for navigation bar
-  int currentPageIndex = 1;
+  int currentHub = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +30,11 @@ class _LandingScreenState extends State<LandingScreen> {
       //top nav bar
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(25.0), // here the desired height
-        child: Container(
-          color: Colors.transparent,
-          child: const Center(child: Text('My Custom AppBar')),
-        ),
+        child: Container(),
       ),
 
       //main body
-      body: pageList[currentPageIndex],
+      body: hubList[currentHub],
 
       //bottom nav bar
       bottomNavigationBar: NavigationBar(
@@ -44,47 +42,53 @@ class _LandingScreenState extends State<LandingScreen> {
         elevation: 0,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         backgroundColor: Colors.transparent,
-        destinations: const [
-          //home button
+        destinations: [
+          //social button
           NavigationDestination(
-            selectedIcon: Icon(
-              Icons.home,
-              color: white,
-              size: 32,
+            selectedIcon: SvgPicture.asset(
+              'assets/chat_selected.svg',
+              colorFilter: const ColorFilter.mode(
+                white,
+                BlendMode.srcIn,
+              ),
+              height: 44,
             ),
-            icon: Icon(
-              Icons.home_outlined,
-              color: white,
-              size: 32,
+            icon: SvgPicture.asset(
+              'assets/chat.svg',
+              colorFilter: const ColorFilter.mode(
+                white,
+                BlendMode.srcIn,
+              ),
+              height: 40,
             ),
             label: 'home',
           ),
 
           //click button
-          NavigationDestination(
+          const NavigationDestination(
             icon: Logo(height: 32),
             label: 'click',
           ),
 
           //profile button
-          NavigationDestination(
+          const NavigationDestination(
             selectedIcon: Icon(
               Icons.person,
               color: white,
-              size: 32,
+              size: 40,
             ),
             icon: Icon(
               Icons.person_outline,
               color: white,
-              size: 32,
+              size: 40,
             ),
             label: 'profile',
           )
         ],
-        selectedIndex: currentPageIndex,
-        onDestinationSelected: (int index) {
+        selectedIndex: currentHub,
+        onDestinationSelected: (int hub) {
           setState(() {
-            currentPageIndex = index;
+            currentHub = hub;
           });
         },
       ),

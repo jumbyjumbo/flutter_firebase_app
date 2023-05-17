@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AuthHub extends StatelessWidget {
-  AuthHub({super.key});
+class SocialHub extends StatelessWidget {
+  SocialHub({super.key});
   final _pageController = PageController(initialPage: 1);
 
   @override
@@ -9,12 +9,12 @@ class AuthHub extends StatelessWidget {
     return PageView(
       scrollDirection: Axis.horizontal,
       controller: _pageController,
-      children: [
-        //login
+      children: const [
+        //messages
 
-        //signup
+        //chatbox
 
-        //forgot password
+        //friends
       ],
     );
   }

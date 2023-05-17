@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
       //title of the app used by the OS
       title: 'flutter app',
       theme: ThemeData(
+        cardTheme: const CardTheme(color: deepgrey),
         //elevated button style
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
