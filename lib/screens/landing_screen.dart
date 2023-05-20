@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 import '../ressources/logos/logo.dart';
-import 'hubs/auth_hub.dart';
 import 'hubs/click_hub.dart';
+import 'hubs/profile_hub.dart';
 import 'hubs/social_hub.dart';
 
 //list of hubs for navigation bar
 final List<Widget> hubList = [
   SocialHub(),
   ClickHub(),
-  AuthHub(),
+  ProfileHub(),
 ];
 
 class LandingScreen extends StatefulWidget {
@@ -28,9 +28,9 @@ class _LandingScreenState extends State<LandingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       //top nav bar
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(25.0), // here the desired height
-        child: Container(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
 
       //main body
@@ -46,7 +46,7 @@ class _LandingScreenState extends State<LandingScreen> {
           //social button
           NavigationDestination(
             selectedIcon: SvgPicture.asset(
-              'assets/chat_selected.svg',
+              'assets/chat_filled.svg',
               colorFilter: const ColorFilter.mode(
                 white,
                 BlendMode.srcIn,

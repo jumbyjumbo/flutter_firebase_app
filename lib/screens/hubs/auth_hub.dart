@@ -8,9 +8,12 @@ import '../landing_screen.dart';
 class AuthHub extends StatelessWidget {
   AuthHub({super.key});
   final _pageController = PageController(initialPage: 1);
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _usernameController = TextEditingController();
+  final _signupEmailController = TextEditingController();
+  final _signupPasswordController = TextEditingController();
+  final _signupUsernameController = TextEditingController();
+
+  final _loginEmailController = TextEditingController();
+  final _loginPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class AuthHub extends StatelessWidget {
                 children: [
                   //input username
                   TextFieldInput(
-                    textEditingController: _usernameController,
+                    textEditingController: _signupUsernameController,
                     hintText: 'username',
                     textInputType: TextInputType.text,
                   ),
@@ -50,7 +53,7 @@ class AuthHub extends StatelessWidget {
                   ),
                   //input email
                   TextFieldInput(
-                    textEditingController: _emailController,
+                    textEditingController: _signupEmailController,
                     hintText: 'email',
                     textInputType: TextInputType.emailAddress,
                   ),
@@ -59,7 +62,7 @@ class AuthHub extends StatelessWidget {
                   ),
                   //input password
                   TextFieldInput(
-                    textEditingController: _passwordController,
+                    textEditingController: _signupPasswordController,
                     hintText: 'password',
                     textInputType: TextInputType.text,
                     isPass: true,
@@ -72,35 +75,39 @@ class AuthHub extends StatelessWidget {
             ),
 
             //signup button
-            GestureDetector(
-              onTap: () {
-                AuthMethods()
-                    .signUpUser(
-                  email: _emailController.text,
-                  password: _passwordController.text,
-                  username: _usernameController.text,
-                )
-                    .then((result) {
-                  handleAuthResult(result, const LandingScreen(), context);
-                });
-              },
-              child: const SizedBox(
-                height: 80,
-                width: double.infinity,
-                child: Card(
-                  color: white,
-                  child: Center(
-                    child: Text(
-                      'Signup',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: black,
-                          fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: GestureDetector(
+                onTap: () {
+                  AuthMethods()
+                      .signUpUser(
+                    email: _signupEmailController.text,
+                    password: _signupPasswordController.text,
+                    username: _signupUsernameController.text,
+                  )
+                      .then((result) {
+                    handleAuthResult(result, const LandingScreen(), context);
+                  });
+                },
+                child: const SizedBox(
+                  height: 80,
+                  width: double.infinity,
+                  child: Card(
+                    color: white,
+                    child: Center(
+                      child: Text(
+                        'Signup',
+                        style: TextStyle(
+                            fontSize: 30,
+                            color: black,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
+
             const SizedBox(
               height: 50,
             ),
@@ -159,7 +166,7 @@ class AuthHub extends StatelessWidget {
                 children: [
                   //input email
                   TextFieldInput(
-                    textEditingController: _emailController,
+                    textEditingController: _loginEmailController,
                     hintText: 'email',
                     textInputType: TextInputType.emailAddress,
                   ),
@@ -168,7 +175,7 @@ class AuthHub extends StatelessWidget {
                   ),
                   //input password
                   TextFieldInput(
-                    textEditingController: _passwordController,
+                    textEditingController: _loginPasswordController,
                     hintText: 'password',
                     textInputType: TextInputType.text,
                     isPass: true,
@@ -207,8 +214,8 @@ class AuthHub extends StatelessWidget {
               onTap: () {
                 AuthMethods()
                     .signInUser(
-                  email: _emailController.text,
-                  password: _passwordController.text,
+                  email: _loginEmailController.text,
+                  password: _loginPasswordController.text,
                 )
                     .then((result) {
                   handleAuthResult(result, const LandingScreen(), context);
