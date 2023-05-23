@@ -18,12 +18,26 @@ class ProfileHub extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40))),
         ),
 
-        //chatbox
-        Container(
-          color: Colors.green,
-          child: const Center(
-              child: Text('profile',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40))),
+        //profile
+        Column(
+          children: [
+            const SizedBox(
+              height: 80,
+            ),
+            Title(
+              color: Colors.white,
+              child: const Text(
+                'profile',
+                style: TextStyle(
+                    fontSize: 60,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            const CircleAvatar(
+              radius: 50,
+            )
+          ],
         ),
 
         //friends

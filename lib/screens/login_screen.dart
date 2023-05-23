@@ -15,6 +15,7 @@ class _LandingScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       //top nav bar
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(25.0), // here the desired height

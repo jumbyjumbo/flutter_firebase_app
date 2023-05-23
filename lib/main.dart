@@ -45,21 +45,11 @@ class MyApp extends StatelessWidget {
 
       //theme of the app
       theme: ThemeData(
-        //card theme
-        cardTheme: const CardTheme(color: deepgrey),
-        //elevated button style
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: buttongrey,
-            foregroundColor: white,
-          ),
-        ),
         //app font
         textTheme: GoogleFonts.orbitronTextTheme(textTheme),
+
+        //version of material ui to use
         useMaterial3: true,
-        primaryColor: white,
-        canvasColor: deepergrey,
-        scaffoldBackgroundColor: deepergrey,
       ),
 
       // home: const ResponsiveLayout(

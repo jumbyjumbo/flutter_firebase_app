@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_flutter/utils/colors.dart';
+import 'package:neumorphic_ui/neumorphic_ui.dart';
 import '../../ressources/auth_methods.dart';
 import '../../widgets/continue_with_3rd_party.dart';
 import '../../widgets/text_field_input.dart';
@@ -27,13 +28,6 @@ class AuthHub extends StatelessWidget {
             //signup title
             const SizedBox(
               height: 80,
-              child: Center(
-                child: Text(
-                  'Signup',
-                  style: TextStyle(
-                      fontSize: 60, color: white, fontWeight: FontWeight.bold),
-                ),
-              ),
             ),
             const Spacer(),
 
@@ -74,38 +68,21 @@ class AuthHub extends StatelessWidget {
               height: 50,
             ),
 
-            //signup button
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: GestureDetector(
-                onTap: () {
-                  AuthMethods()
-                      .signUpUser(
-                    email: _signupEmailController.text,
-                    password: _signupPasswordController.text,
-                    username: _signupUsernameController.text,
-                  )
-                      .then((result) {
-                    handleAuthResult(result, const LandingScreen(), context);
-                  });
-                },
-                child: const SizedBox(
-                  height: 80,
-                  width: double.infinity,
-                  child: Card(
-                    color: white,
-                    child: Center(
-                      child: Text(
-                        'Signup',
-                        style: TextStyle(
-                            fontSize: 30,
-                            color: black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+            //signup neumorphic button
+            NeumorphicButton(
+              onPressed: () {
+                AuthMethods()
+                    .signUpUser(
+                  email: _signupEmailController.text,
+                  password: _signupPasswordController.text,
+                  username: _signupUsernameController.text,
+                )
+                    .then((result) {
+                  handleAuthResult(result, const LandingScreen(), context);
+                });
+              },
+              child: const SizedBox(
+                  width: double.infinity, child: Center(child: Text("signup"))),
             ),
 
             const SizedBox(
