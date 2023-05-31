@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 import 'package:neumorphic_ui/neumorphic_ui.dart';
 import '../../ressources/auth_methods.dart';
@@ -25,7 +24,6 @@ class AuthHub extends StatelessWidget {
         //signup
         Column(
           children: [
-            //signup title
             const SizedBox(
               height: 80,
             ),
@@ -70,6 +68,7 @@ class AuthHub extends StatelessWidget {
 
             //signup neumorphic button
             NeumorphicButton(
+              padding: const EdgeInsets.fromLTRB(0, 32, 0, 32),
               onPressed: () {
                 AuthMethods()
                     .signUpUser(
